@@ -1,5 +1,5 @@
 --samplerate
-100.0
+1000.0
 --spinperiod
 60.0
 --spinangle
@@ -9,7 +9,7 @@
 --precangle
 22.0
 --hwprpm
-1.0
+0.0
 --obs
 24.0
 --gap
