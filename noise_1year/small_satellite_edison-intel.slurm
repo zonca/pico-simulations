@@ -77,7 +77,7 @@ fi
 
 # The commandline
 
-com="${ex} \
+com="${ex} @${parfile} \
 --groupsize ${groupsize} \
 --fp ${fpfile} \
 --nside ${nside} \
@@ -86,14 +86,6 @@ com="${ex} \
 --noisefilter \
 --baseline 1.0 \
 --outdir ${outdir}/out \
---samplerate 1000.0 \
---spinperiod 60.0 \
---spinangle 73.0 \
---precperiod 14400.0 \
---precangle 22.0 \
---hwprpm 0.0 \
---obs 24.0 \
---gap 0.0
 "
 
 #--- Hardware configuration ----
