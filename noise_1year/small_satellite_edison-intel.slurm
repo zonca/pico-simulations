@@ -42,6 +42,9 @@ fi
 detpix=1
 
 fpfile="pico_1.pkl"
+if [ ! -e "${fpfile}" ]; then
+    srun -n 1 -N 1 bash make_focalplane.sh
+fi
 
 # The executable script
 
