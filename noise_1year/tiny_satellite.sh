@@ -40,6 +40,9 @@ com="${ex} @${parfile} \
 --fp ${fpfile} \
 --nside ${nside} \
 --numobs ${nobs} \
+--madam \
+--noisefilter \
+--baseline 1.0 \
 --outdir ${outdir}/out \
 "
 
