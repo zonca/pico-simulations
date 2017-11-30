@@ -2,7 +2,7 @@
 
 #SBATCH --partition=debug
 
-#SBATCH --account=m2798
+#SBATCH --account=m2913
 #SBATCH --nodes=1
 #SBATCH --time=00:30:00
 #SBATCH --job-name=pico
