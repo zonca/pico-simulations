@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --partition=debug
+#SBATCH --partition=regular
 
 #SBATCH --account=m2913
-#SBATCH --nodes=1
-#SBATCH --time=00:30:00
+#SBATCH --nodes=32
+#SBATCH --time=03:30:00
 #SBATCH --job-name=pico
 #SBATCH --output=out_pico_%j.log
 
@@ -26,8 +26,8 @@ mkdir -p "${outdir}"
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=1
-nobs=2
+nodes=32
+nobs=365
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
