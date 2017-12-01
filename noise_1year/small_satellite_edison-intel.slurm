@@ -2,7 +2,7 @@
 
 #SBATCH --partition=regular
 
-#SBATCH --account=m2913
+#SBATCH --account=mp107
 #SBATCH --nodes=32
 #SBATCH --time=03:30:00
 #SBATCH --job-name=pico
