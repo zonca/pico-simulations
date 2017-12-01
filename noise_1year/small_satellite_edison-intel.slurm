@@ -83,8 +83,7 @@ com="${ex} @${parfile} \
 --nside ${nside} \
 --numobs ${nobs} \
 --madam \
---noisefilter \
---baseline 1.0 \
+--baseline 60.0 \
 --outdir ${outdir}/out \
 "
 
