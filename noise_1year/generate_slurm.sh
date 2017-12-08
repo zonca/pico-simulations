@@ -20,6 +20,7 @@ make_output () {
     sub="${sub} -e 's#@@nodes@@#${nodes}#g'"
     sub="${sub} -e 's#@@pix@@#${pixels}#g'"
     sub="${sub} -e 's#@@days@@#${days}#g'"
+    sub="${sub} -e 's#@@topdir@@#${topdir}#g'"
 
     rm -f "${outfile}"
 
@@ -66,7 +67,7 @@ for machine in edison-intel cori-intel-knl; do
 
     # Case 3: 19 pixel, 10 day
 
-    make_output "${confsub}" "19" "1" "72" "${machine}"
+    make_output "${confsub}" "19" "10" "72" "${machine}"
 
     # Case 4: 217 pixel, 1 day
 

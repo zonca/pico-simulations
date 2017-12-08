@@ -35,7 +35,7 @@ ndet=$(( 2 * detpix ))
 
 groupsize=1
 groupnodes=$(( ndet / node_proc ))
-if [ $(( groupnodes > 0 )) ]; then
+if [ "${groupnodes}" -gt "0" ]; then
     groupsize=$(( groupnodes * node_proc ))
     if [ $(( nodes % groupnodes )) != "0" ]; then
 	echo "The number of nodes in a group (${groupnodes}) should evenly divide into the total (${nodes})"
@@ -43,6 +43,7 @@ if [ $(( groupnodes > 0 )) ]; then
     fi
 fi
 ngroup=$(( nodes * node_proc / groupsize ))
+echo "Running with ${ngroup} groups of ${groupsize} prcesses each"
 
 # How many days is this simulation?
 ndays=@@days@@
