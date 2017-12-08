@@ -5,83 +5,74 @@ pushd $(dirname $0) > /dev/null
 topdir=$(pwd -P)
 popd > /dev/null
 
-: ${TYPES:="satellite "}
-: ${SIZES:="small "}
-: ${MACHINES:="cori-intel-knl "}
+template="pico_template"
 
-for type in ${TYPES}; do
-    for size in ${SIZES}; do
-        for machine in ${MACHINES}; do
-            template="${type}_template"
-            sizefile="${type}.${size}"
-            machfile="machine.${machine}"
-            outfile="${size}_${type}_${machine}.slurm"
+make_output () {
+    sub=$1
+    pixels=$2
+    days=$3
+    nodes=$4
+    mach=$5
 
-            echo "Generating ${outfile}"
+    outfile=$(printf "pico_%05dpix_%03dday_%s.slurm" "${pixels}" "${days}" "${mach}")
+    echo "Generating ${outfile}"
 
-            # Create list of substitutions
+    sub="${sub} -e 's#@@nodes@@#${nodes}#g'"
+    sub="${sub} -e 's#@@pix@@#${pixels}#g'"
+    sub="${sub} -e 's#@@days@@#${days}#g'"
 
-            confsub=""
+    rm -f "${outfile}"
 
-            while IFS='' read -r line || [[ -n "${line}" ]]; do
-                # is this line commented?
-                comment=$(echo "${line}" | cut -c 1)
-                if [ "${comment}" != "#" ]; then
+    while IFS='' read -r line || [[ -n "${line}" ]]; do
+        echo "${line}" | eval sed ${sub} >> "${outfile}"
+    done < "${template}"
+}
 
-                    check=$(echo "${line}" | sed -e "s#.*=.*#=#")
-                
-                    if [ "x${check}" = "x=" ]; then
-                        # get the variable and its value
-                        var=$(echo ${line} | sed -e "s#\([^=]*\)=.*#\1#" | awk '{print $1}')
-                        val=$(echo ${line} | sed -e "s#[^=]*= *\(.*\)#\1#")
-                        # add to list of substitutions
-                        confsub="${confsub} -e 's#@@${var}@@#${val}#g'"
-                    fi
-                fi
 
-            done < "${sizefile}"
+for machine in edison-intel cori-intel-knl; do
+    machfile="machine.${machine}"
 
-            while IFS='' read -r line || [[ -n "${line}" ]]; do
-                # is this line commented?
-                comment=$(echo "${line}" | cut -c 1)
-                if [ "${comment}" != "#" ]; then
+    # Create list of substitutions
 
-                    check=$(echo "${line}" | sed -e "s#.*=.*#=#")
-                
-                    if [ "x${check}" = "x=" ]; then
-                        # get the variable and its value
-                        var=$(echo ${line} | sed -e "s#\([^=]*\)=.*#\1#" | awk '{print $1}')
-                        val=$(echo ${line} | sed -e "s#[^=]*= *\(.*\)#\1#")
-                        # add to list of substitutions
-                        confsub="${confsub} -e 's#@@${var}@@#${val}#g'"
-                    fi
-                fi
+    confsub=""
 
-            done < "${machfile}"
+    while IFS='' read -r line || [[ -n "${line}" ]]; do
+        # is this line commented?
+        comment=$(echo "${line}" | cut -c 1)
+        if [ "${comment}" != "#" ]; then
 
-            # We add these predefined matches at the end- so that the config
-            # files can also use these.
+            check=$(echo "${line}" | sed -e "s#.*=.*#=#")
+        
+            if [ "x${check}" = "x=" ]; then
+                # get the variable and its value
+                var=$(echo ${line} | sed -e "s#\([^=]*\)=.*#\1#" | awk '{print $1}')
+                val=$(echo ${line} | sed -e "s#[^=]*= *\(.*\)#\1#")
+                # add to list of substitutions
+                confsub="${confsub} -e 's#@@${var}@@#${val}#g'"
+            fi
+        fi
 
-            confsub="${confsub} -e 's#@@machine@@#${machine}#g'"
-            confsub="${confsub} -e 's#@@size@@#${size}#g'"
-            confsub="${confsub} -e 's#@@topdir@@#${topdir}#g'"
+    done < "${machfile}"
 
-            #echo "${confsub}"
+    confsub="${confsub} -e 's#@@machine@@#${machine}#g'"
 
-            # Process the template
+    # Case 1: 1 pixel, 1 day
 
-            rm -f "${outfile}"
+    make_output "${confsub}" "1" "1" "1" "${machine}"
 
-            while IFS='' read -r line || [[ -n "${line}" ]]; do
-                echo "${line}" | eval sed ${confsub} >> "${outfile}"
-            done < "${template}"
+    # Case 2: 19 pixel, 1 day
 
-        done
-    done
+    make_output "${confsub}" "19" "1" "6" "${machine}"
+
+    # Case 3: 19 pixel, 10 day
+
+    make_output "${confsub}" "19" "1" "72" "${machine}"
+
+    # Case 4: 217 pixel, 1 day
+
+    make_output "${confsub}" "217" "1" "72" "${machine}"
+
 done
-
-
-
 
 
 

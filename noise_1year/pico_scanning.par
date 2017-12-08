@@ -10,7 +10,7 @@
 22.0
 --hwprpm
 0.0
---obs
-24.0
---gap
-0.0
+--baseline
+60.0
+--nside
+1024

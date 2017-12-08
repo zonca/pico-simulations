@@ -1,0 +1,12 @@
+temperature_only = F
+force_pol = T
+kfirst = T
+concatenate_messages = T
+write_map = T
+write_binmap = T
+write_matrix = T
+write_wcov = T
+write_hits = T
+nside_cross = 512
+nside_submap = 4
+allreduce = T
