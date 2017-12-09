@@ -1,0 +1,132 @@
+#!/bin/bash
+
+#SBATCH --partition=debug
+@@constraint@@
+#SBATCH --account=mp107
+#SBATCH --nodes=@@nodes@@
+#SBATCH --time=00:30:00
+#SBATCH --job-name=pico
+#SBATCH --output=out_pico_@@pix@@_@@days@@_@@machine@@_%j.log
+
+echo Starting slurm script at $(date)
+
+echo -e "\n-----------------------------------------------------------------------"
+echo -e "ENVIRONMENT:\n"
+env
+echo -e "-----------------------------------------------------------------------\n"
+echo "PYTHON: $(which python)"
+echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
+echo ""
+
+# This should be the same as the --nodes option above
+nodes=@@nodes@@
+
+# How many processes are we running per node?
+node_proc=@@nodeprocs@@
+
+# How many pixels and detectors are we using?
+detpix=@@pix@@
+ndet=$(( 2 * detpix ))
+
+# Data distribution parameters.  We are distributing by detector,
+# so if our number of processes in a group is larger than the number
+# of detectors this is an error.  The groupsize should be a whole number
+# of nodes which is less than the number of detectors.
+
+groupsize=1
+groupnodes=$(( ndet / node_proc ))
+if [ "${groupnodes}" -gt "0" ]; then
+    groupsize=$(( groupnodes * node_proc ))
+    if [ $(( nodes % groupnodes )) != "0" ]; then
+	echo "The number of nodes in a group (${groupnodes}) should evenly divide into the total (${nodes})"
+	exit 1
+    fi
+fi
+ngroup=$(( nodes * node_proc / groupsize ))
+echo "Running with ${ngroup} groups of ${groupsize} prcesses each"
+
+# How many days is this simulation?
+ndays=@@days@@
+
+outdir="out_pico_${detpix}pix_${ndays}day_edison-intel"
+mkdir -p "${outdir}"
+
+# Our "observation" is set to less than a day to allow more fine
+# grained data distribution.
+obs=2
+obsperday=12
+gap=0
+nobs=$(( obsperday * ndays ))
+if [ "${nobs}" -lt "${ngroup}" ]; then
+    echo "There are more groups (${ngroup}) than observations (${nobs})"
+    exit 1
+fi
+
+# Generate the focalplane file if it does not already exist.
+
+fpfile="pico_${detpix}.pkl"
+if [ ! -e "${fpfile}" ]; then
+    srun -n 1 -N 1 toast_fake_focalplane.py \
+	--minpix ${detpix} \
+	--out pico \
+	--fwhm 1.0 \
+	--fov 1.0 \
+	--psd_fknee 0.015 \
+	--psd_NET 60e-6 \
+	--psd_alpha 1
+fi
+
+# The executable script
+
+ex=$(which toast_satellite_sim.py)
+echo "Using ${ex}"
+
+# Scan strategy parameters from a file
+
+parfile="@@topdir@@/pico_scanning.par"
+
+# Madam parameter file
+
+madam="@@topdir@@/pico_madam.par"
+
+# The commandline
+
+com="${ex} @${parfile} \
+--groupsize ${groupsize} \
+--obs ${obs} \
+--gap ${gap} \
+--fp ${fpfile} \
+--madam \
+--madampar ${madam} \
+--numobs ${nobs} \
+--outdir ${outdir}/out \
+"
+
+#--- Hardware configuration ----
+
+# Hyperthread CPUs per physical core
+cpu_per_core=@@hyperthread@@
+
+# Physical cores we are using
+node_cores=@@nodecores@@
+
+node_thread=$(( node_cores / node_proc ))
+node_depth=$(( cpu_per_core * node_thread ))
+procs=$(( nodes * node_proc ))
+
+export OMP_NUM_THREADS=${node_thread}
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+# Set TMPDIR to be on the ramdisk
+export TMPDIR=/dev/shm
+
+run="srun --cpu_bind=cores -n ${procs} -N ${nodes} -c ${node_depth}"
+
+echo Calling srun at $(date)
+
+echo "${run} ${com}"
+eval ${run} ${com} > "${outdir}/log" 2>&1
+
+echo End slurm script at $(date)
+
