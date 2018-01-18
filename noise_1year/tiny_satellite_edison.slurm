@@ -80,6 +80,8 @@ else
     groupsize=$(( node_proc * groupnodes ))
 fi
 
+madam="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulations/noise_1year/pico_madam.par"
+
 # The commandline
 
 com="${ex} @${parfile} \
@@ -88,6 +90,7 @@ com="${ex} @${parfile} \
 --enable-timer-serialization \
 --groupsize ${groupsize} \
 --madam \
+--madampar ${madam} \
 --fp ${fpfile} \
 --numobs ${nobs} \
 --outdir ${outdir}/out \
