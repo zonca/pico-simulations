@@ -87,7 +87,6 @@ madam="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulation
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
 --toast-timing-fname "timing_report_main" \
---enable-timer-serialization \
 --groupsize ${groupsize} \
 --madam \
 --madampar ${madam} \
