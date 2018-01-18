@@ -24,7 +24,7 @@ echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
 pstr=edison
-outdir="out_tiny_satellite_${pstr}_30days"
+outdir="out_tiny_satellite_${pstr}_50days"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -65,7 +65,7 @@ parfile="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulati
 
 # Observations
 
-nobs=30
+nobs=50
 
 groupnodes=0
 
