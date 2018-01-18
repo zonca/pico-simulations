@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=32
+#SBATCH --nodes=10
 #SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -31,7 +31,7 @@ mkdir -p "${outdir}"
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=32
+nodes=10
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
@@ -65,7 +65,7 @@ parfile="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulati
 
 # Observations
 
-nobs=100
+nobs=10
 
 groupnodes=0
 
