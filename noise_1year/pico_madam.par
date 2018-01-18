@@ -10,3 +10,4 @@ write_hits = T
 nside_cross = 512
 nside_submap = 4
 allreduce = T
+iter_max = 200
