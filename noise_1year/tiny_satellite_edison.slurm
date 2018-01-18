@@ -24,7 +24,7 @@ echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
 pstr=edison
-outdir="out_tiny_satellite_${pstr}"
+outdir="out_tiny_satellite_${pstr}_30days"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -65,7 +65,7 @@ parfile="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulati
 
 # Observations
 
-nobs=10
+nobs=30
 
 groupnodes=0
 
@@ -74,11 +74,7 @@ groupnodes=0
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-if [ ${node_proc} -gt ${detpix} ]; then
-    groupsize=1
-else
-    groupsize=$(( node_proc * groupnodes ))
-fi
+groupsize=1
 
 madam="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulations/noise_1year/pico_madam.par"
 
