@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=1
+#SBATCH --nodes=32
 #SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -31,7 +31,7 @@ mkdir -p "${outdir}"
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=1
+nodes=32
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
@@ -61,11 +61,11 @@ echo "Using ${ex}"
 
 # Scan strategy parameters from a file
 
-parfile="/global/project/projectdirs/planck/software/zonca/software/toast/examples/params/satellite/sim_noise_hwp.par"
+parfile="/global/project/projectdirs/planck/software/zonca/scratch/pico-simulations/noise_1year/pico_scanning.par"
 
 # Observations
 
-nobs=32
+nobs=100
 
 groupnodes=0
 
@@ -124,17 +124,5 @@ echo Calling srun at $(date)
 : ${LOG_OUT:="${outdir}/log"}
 echo "${run} ${com}"
 eval ${run} ${com} > ${LOG_OUT} 2>&1
-
-# if the glob is unsuccessful, don't pass ${outdir}/timing_report*.out
-shopt -s nullglob
-if [ -x ${PWD}/generate_notes.sh ]; then
-    ${PWD}/generate_notes.sh ${outdir}
-else
-    for i in ${outdir}/timing_report*.out
-    do
-        echo -e "\n--> ${i}\n" >> ${LOG_OUT}
-        head -n 1000 ${i} >> ${LOG_OUT}
-    done
-fi
 
 echo End slurm script at $(date)
