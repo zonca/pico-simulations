@@ -1,6 +1,8 @@
 temperature_only = F
 force_pol = T
 kfirst = T
+base_first = 1
+kfilter = T
 concatenate_messages = T
 write_map = T
 write_binmap = T
