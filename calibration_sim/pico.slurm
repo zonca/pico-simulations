@@ -57,6 +57,8 @@ fi
 
 # The executable script
 
+# Pico simulations needs to be executed with the https://github.com/zonca/toast/tree/pico_fits branch
+
 ex=$(which toast_satellite_sim.py)
 echo "Using ${ex}"
 
