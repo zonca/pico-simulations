@@ -13,7 +13,7 @@
 --baseline
 60.0
 --nside
-1024
+512
 --obs
 24.0
 --input_pysm_model
