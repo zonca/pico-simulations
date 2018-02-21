@@ -24,7 +24,7 @@ components = ["a2","d7","f1","s3"]
 
 bandpass_low = det["Frequency"] - det["Bandwidth"]/2
 bandpass_high = det["Frequency"] + det["Bandwidth"]/2
-unit = 'uK_RJ'
+unit = 'uK_CMB'
 instrument_bpass = {
     'use_smoothing' : True,
     'beams' : np.array([det["Beam_FWHM"]]),
