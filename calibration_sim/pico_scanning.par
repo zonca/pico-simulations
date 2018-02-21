@@ -17,7 +17,7 @@
 --obs
 24.0
 --input_pysm_model
-a1,d1,f1,s1
+a2,d7,f1,s3
 --apply_beam
 --flush
 --input_dipole
