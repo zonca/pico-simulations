@@ -1,5 +1,6 @@
 import pysm
 import sys
+import os
 from pysm.nominal import models
 
 import healpy as hp
@@ -25,16 +26,19 @@ components = ["a2","d7","f1","s3"]
 bandpass_low = det["Frequency"] - det["Bandwidth"]/2
 bandpass_high = det["Frequency"] + det["Bandwidth"]/2
 unit = 'uK_CMB'
+use_bandpass = False
+output_directory = 'pysm_components/nside{}_{}bandpass_{}'.format(nside, "tophat" if use_bandpass else "delta", unit)
+os.mkdirs(output_directory)
 instrument_bpass = {
     'use_smoothing' : True,
     'beams' : np.array([det["Beam_FWHM"]]),
     'nside' : nside,
     'add_noise' : False,
-    'use_bandpass' : False,
+    'use_bandpass' : use_bandpass,
     'channels' : [(np.linspace(bandpass_low, bandpass_high, 10), np.ones(10))],
     'frequencies' : [det["Frequency"]],
     'output_units' : unit,
-    'output_directory' : 'pysm_components/nside16_deltabandpass_{}'.format(unit),
+    'output_directory' : output_directory,
     'output_prefix' : 'pico',
     'noise_seed' : 1234,
 }
