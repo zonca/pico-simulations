@@ -28,7 +28,7 @@ bandpass_high = det["Frequency"] + det["Bandwidth"]/2
 unit = 'uK_CMB'
 use_bandpass = False
 output_directory = 'pysm_components/nside{}_{}bandpass_{}'.format(nside, "tophat" if use_bandpass else "delta", unit)
-os.mkdirs(output_directory)
+os.makedirs(output_directory, exist_ok=True)
 instrument_bpass = {
     'use_smoothing' : True,
     'beams' : np.array([det["Beam_FWHM"]]),
