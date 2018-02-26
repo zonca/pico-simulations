@@ -23,8 +23,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-pstr=edison
-outdir="pico_calibration_sim_${pstr}"
+outdir="out/40days"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -68,7 +67,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=3
+nobs=15
 
 groupnodes=0
 
