@@ -10,7 +10,7 @@ band = int(sys.argv[1])
 
 det = pd.read_csv("pico.csv", delim_whitespace=True).set_index("Band").loc[band]
 
-nside = 512
+nside = 16
 
 components_name = { n[0]:n for n in [
     'synchrotron',
@@ -30,10 +30,11 @@ instrument_bpass = {
     'beams' : np.array([det["Beam_FWHM"]]),
     'nside' : nside,
     'add_noise' : False,
-    'use_bandpass' : True,
+    'use_bandpass' : False,
     'channels' : [(np.linspace(bandpass_low, bandpass_high, 10), np.ones(10))],
+    'frequencies' : [det["Frequency"]],
     'output_units' : unit,
-    'output_directory' : 'pysm_components',
+    'output_directory' : 'pysm_components/nside16_deltabandpass_{}'.format(unit),
     'output_prefix' : 'pico',
     'noise_seed' : 1234,
 }
