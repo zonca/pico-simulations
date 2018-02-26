@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=1
+#SBATCH --nodes=12
 #SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -30,7 +30,7 @@ mkdir -p "${outdir}"
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=1
+nodes=12
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
@@ -67,7 +67,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=15
+nobs=185
 
 groupnodes=0
 
