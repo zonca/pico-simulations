@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=12
+#SBATCH --nodes=4
 #SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -23,14 +23,14 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/40days"
+outdir="out/60days"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=12
+nodes=4
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
@@ -67,7 +67,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=185
+nobs=60
 
 groupnodes=0
 
@@ -86,6 +86,7 @@ com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
+--debug \
 --madam \
 --madampar ${madam} \
 --fp ${fpfile} \
