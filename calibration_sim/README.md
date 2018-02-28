@@ -14,9 +14,7 @@ Calibration simulation for PICO
 
 * `toast` with a modification only to `toast_satellite_sim.py` to support writing a fits file per observation per channel: <https://github.com/zonca/toast/tree/pico_fits>  at `8fe71f8f9b8149cf8bd032e0acb01e6167feba03`
 * `PySM` `0883c51ffede3741be442135702e3d8a5a59df61`
-* `pico_simulations`:
-
-
+* `pico_simulations`: `baa7cd93ef6a08ffec75c4f331993d2490e9e6db`
 
 ## Outputs
 
@@ -25,5 +23,3 @@ Destriped map and fits files that include timelines, pointing, dipole and input 
 ## Results
 
 * 28 Feb 2018: 185 days simulation in `/global/cscratch1/sd/zonca/pico/cal_sims/185days/out_000/`
-
-
