@@ -7,6 +7,7 @@
 #SBATCH --time=00:30:00
 #SBATCH --job-name=pico-full-focal-plane
 #SBATCH --output=out_tiny_satellite_edison_%j.log
+#SBATCH --mail-type=ALL
 
 set -o errexit
 set -v
