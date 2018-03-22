@@ -55,20 +55,10 @@ parfile="pico_scanning_noise.par"
 
 # Observations
 
-nobs=5
+nobs=30
 
-groupnodes=2
-
-# Data distribution parameters.  We are distributing by detector,
-# so if our number of processes in a group is larger than the number
-# of detectors this is bad.  In that case, set the group size to 
-# one, so we have many more groups, each assigned
-
-if [ ${node_proc} -gt ${detpix} ]; then                                                                       
-    groupsize=1
-else
-    groupsize=$(( node_proc * groupnodes ))
-fi
+group_num_nodes=10
+groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
 fpfile="focalplane/pico_$band.pkl"
