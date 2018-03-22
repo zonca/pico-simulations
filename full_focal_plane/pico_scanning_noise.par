@@ -1,5 +1,3 @@
---samplerate
-126.0
 --spinperiod
 60.0
 --spinangle
@@ -15,4 +13,5 @@
 --nside
 512
 --obs
-0.001
+24.0
+--flush

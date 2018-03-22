@@ -3,11 +3,13 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=1
+#SBATCH --nodes=300
 #SBATCH --time=00:30:00
 #SBATCH --job-name=pico-full-focal-plane
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
+#SBATCH --license=scratch3
+
 
 set -o errexit
 set -v
@@ -24,8 +26,8 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-pstr=edison
-outdir="out_tiny_satellite_${pstr}_50days"
+band="09"
+outdir="out/band_$band"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -53,24 +55,29 @@ parfile="pico_scanning_noise.par"
 
 # Observations
 
-nobs=1
+nobs=5
 
-groupnodes=0
+groupnodes=2
 
 # Data distribution parameters.  We are distributing by detector,
 # so if our number of processes in a group is larger than the number
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=1
+if [ ${node_proc} -gt ${detpix} ]; then                                                                       
+    groupsize=1
+else
+    groupsize=$(( node_proc * groupnodes ))
+fi
 
 madam="pico_madam.par"
-fpfile="focalplane/pico_09.pkl"
+fpfile="focalplane/pico_$band.pkl"
 
 # The commandline
 
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
+--samplerate 126.0 \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
 --madam \
