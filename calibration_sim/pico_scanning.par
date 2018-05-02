@@ -11,7 +11,7 @@
 --hwprpm
 0.0
 --baseline
-60.0
+10.0
 --nside
 512
 --obs
