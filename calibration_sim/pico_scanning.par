@@ -23,10 +23,10 @@ a2,d7,f1,s3
 --input_dipole
 solar
 --input_dipole_solar_speed_kms
-369
+370.0822332
 --input_dipole_solar_gal_lat_deg
-48.26
+48.24
 --input_dipole_solar_gal_lon_deg
-263.99
+264.00
 --input_pysm_precomputed_cmb
 /global/cscratch1/sd/zonca/pico/cal_sims/pico_cmb_nodip.fits
