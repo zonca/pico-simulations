@@ -3,11 +3,11 @@
 --spinperiod
 1.0
 --spinangle
-73.0
+65.0
 --precperiod
 600.0
 --precangle
-22.0
+30.0
 --hwprpm
 0.0
 --baseline
