@@ -7,6 +7,7 @@
 #SBATCH --time=01:20:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
+#SBATCH --mail-type=ALL
 
 set -o errexit
 set -v
