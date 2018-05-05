@@ -23,3 +23,7 @@ Destriped map and fits files that include timelines, pointing, dipole and input 
 ## Results
 
 * 28 Feb 2018: 185 days simulation in `/global/cscratch1/sd/zonca/pico/cal_sims/185days/out_000/`
+
+## Presentations
+
+* [May 2018, Maurizio's "Gain stability" presentation](https://zzz.physics.umn.edu/ipsig/_media/maurizio_tomasi_-_systematics_session_-_gain_stability.pptx)
