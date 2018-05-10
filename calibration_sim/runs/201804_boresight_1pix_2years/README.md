@@ -1,15 +1,12 @@
 PICO Calibration simulation
 ==========================
 
-April 2018
+May 2018
 
 
 ## Software versions
 
-* TOAST after pointing #224 and timing fix #223: `30d2d66908176fa35d4041019816529f5d5d9587`
-* `pico-simulations`: `e27617afb186128d99f6221234a7c09fd632d761`
-
-both tagged: `201804_boresight_1pix_2years`
+TOAST and `pico-simulations`, both tagged: `201804_boresight_1pix_2years`
 
 * <https://github.com/zonca/toast/releases/tag/201804_boresight_1pix_2years>
 * <https://github.com/zonca/pico-simulations/releases/tag/201804_boresight_1pix_2years>
@@ -23,9 +20,11 @@ both tagged: `201804_boresight_1pix_2years`
 * PySM sky
 * 2 years
 
-* see the [SLURM script and other configuration files](https://github.com/zonca/pico-simulations/tree/e27617afb186128d99f6221234a7c09fd632d761/calibration_sim)
+* see the [SLURM script and other configuration files](https://github.com/zonca/pico-simulations/tree/201804_boresight_1pix_2years/calibration_sim)
 
+## Discussion and plots
 
+<https://github.com/zonca/pico-simulations/issues/16>
 
 ## Results location
 
