@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=300
+#SBATCH --nodes=30
 #SBATCH --time=00:30:00
 #SBATCH --job-name=pico-full-focal-plane
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -27,7 +27,7 @@ echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
 band="09"
-outdir="out/band_$band"
+outdir="out/band_${band}_sparse"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -57,17 +57,17 @@ parfile="pico_scanning_noise.par"
 
 nobs=30
 
-group_num_nodes=10
+group_num_nodes=1
 groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
-fpfile="focalplane/pico_$band.pkl"
+fpfile="focalplane/pico_${band}_108det.pkl"
 
 # The commandline
 
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
---samplerate 126.0 \
+--samplerate 63 \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
 --madam \
