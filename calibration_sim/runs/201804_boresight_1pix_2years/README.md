@@ -26,6 +26,8 @@ TOAST and `pico-simulations`, both tagged: `201804_boresight_1pix_2years`
 
 <https://github.com/zonca/pico-simulations/issues/16>
 
+Following calibration simulation: <https://zzz.physics.umn.edu/ipsig/calibration_simulations>
+
 ## Results location
 
 Output IQU maps destriped with Madam and timelines, 1 FITS file per day with:
