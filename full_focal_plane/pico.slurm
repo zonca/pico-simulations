@@ -57,7 +57,7 @@ parfile="pico_scanning_noise.par"
 
 nobs=30
 
-group_num_nodes=1
+group_num_nodes=2
 groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
