@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#SBATCH --partition=debug
+#SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=60
+#SBATCH --nodes=730
 #SBATCH --time=00:30:00
 #SBATCH --job-name=pico-full-focal-plane
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -27,7 +27,7 @@ echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
 band="09"
-outdir="out/band_${band}_sparse_252"
+outdir="out/band_${band}_sparse_252_scalednoise_1year"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -55,13 +55,13 @@ parfile="pico_scanning_noise.par"
 
 # Observations
 
-nobs=30
+nobs=365
 
 group_num_nodes=2
 groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
-fpfile="focalplane/pico_${band}_252det.pkl"
+fpfile="focalplane/pico_${band}_252det_scalednoise.pkl"
 
 # The commandline
 
