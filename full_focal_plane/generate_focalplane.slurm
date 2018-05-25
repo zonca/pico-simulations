@@ -12,4 +12,4 @@
 set -o errexit
 set -v
 
-srun -n 1 -N 1 toast_pico_pkl.py --bands ../toast-pico/params/bands.txt --pixels pixels.txt --fov 12.15
+srun -n 1 -N 1 toast_pico_pkl.py --bands bands.txt --pixels pixels.txt --fov 12.15
