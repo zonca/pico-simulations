@@ -26,8 +26,8 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-band="09"
-outdir="out/band_${band}_sparse_252_scalednoise_1year"
+band="10"
+outdir="out/band_${band}_sparse_scalednoise_1year"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -61,13 +61,12 @@ group_num_nodes=2
 groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
-fpfile="focalplane/pico_${band}_252det_scalednoise.pkl"
+fpfile="focalplane/pico_${band}.pkl"
 
 # The commandline
 
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
---samplerate 63 \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
 --madam \
