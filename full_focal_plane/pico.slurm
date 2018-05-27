@@ -68,6 +68,7 @@ fpfile="focalplane/pico_${band}.pkl"
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
 --toast-timing-fname "timing_report_main" \
+--samplerate 63 \
 --groupsize ${groupsize} \
 --madam \
 --madampar ${madam} \
