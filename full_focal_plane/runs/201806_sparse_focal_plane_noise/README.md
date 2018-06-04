@@ -25,7 +25,11 @@ zonca@sdsc.edu
 
 ## Results location
 
-Output IQU maps destriped with Madam
+Available maps:
+
+* IQU maps binned and destriped with Madam
+* White noise covariance matrices `wcov.fits`
+* Original hitmaps from Madam (less detectors, lower sampling rate) and corrected hitmaps representative of nominal focal plane
 
 NERSC
 
