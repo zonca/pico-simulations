@@ -8,6 +8,7 @@
 #SBATCH --time=00:10:00
 #SBATCH --job-name=pico-focalplane
 #SBATCH --output=pico-focalplane-%j.log
+#SBATCH --mail-type=ALL
 
 set -o errexit
 set -v
