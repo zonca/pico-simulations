@@ -3,8 +3,8 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=730
-#SBATCH --time=00:30:00
+#SBATCH --nodes=1000
+#SBATCH --time=00:20:00
 #SBATCH --job-name=pico-full-focal-plane
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
@@ -26,8 +26,8 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-band="10"
-outdir="out/band_${band}_sparse_scalednoise_1year"
+band="09"
+outdir="out/band_${band}_1year"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -55,9 +55,9 @@ parfile="pico_scanning_noise.par"
 
 # Observations
 
-nobs=365
+nobs=182
 
-group_num_nodes=2
+group_num_nodes=4
 groupsize=$(( node_proc * group_num_nodes ))
 
 madam="pico_madam.par"
