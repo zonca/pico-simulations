@@ -3,8 +3,8 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=50
-#SBATCH --time=01:20:00
+#SBATCH --nodes=100
+#SBATCH --time=00:25:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
@@ -31,7 +31,7 @@ mkdir -p "${outdir}"
 # loaded the toast module for the correct machine / configuration.
 
 # This should be the same as the --nodes option above
-nodes=50
+nodes=$SLURM_JOB_NUM_NODES
 
 # How many processes are we running per node?  Handle
 # the case of a very small simulation.
