@@ -4,7 +4,7 @@
 
 #SBATCH --account=mp107
 #SBATCH --nodes=100
-#SBATCH --time=00:25:00
+#SBATCH --time=00:12:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
