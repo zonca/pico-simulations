@@ -44,3 +44,8 @@ NERSC
 tape
 
 `~zonca/pico/201804_boresight_1pix_2years`
+
+## Issues
+
+These simulations are affected by a coordinate rotation issue in the PySM operator, see https://github.com/hpc4cmb/toast/issues/242
+Therefore Q and U maps are wrong.
