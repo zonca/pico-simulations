@@ -41,20 +41,10 @@ else
     node_proc=8
 fi
 
-# Generate the focalplane file if it does not already exist.
-
-detpix=1
-
 fpparfile="focalplane.par"
-fpfile="${outdir}/fp_${detpix}.pkl"
-if [ ! -e "${fpfile}" ]; then
-    echo "Running toast_fake_focalplane.py..."
-    srun -n 1 -N 1 toast_fake_focalplane.py @$fpparfile \
-        --disable-timer-serialization \
-        --toast-output-dir "${outdir}" --toast-timing-fname "timing_report_fp" \
-        --minpix ${detpix} --out "${outdir}/fp"
-fi
-
+fpfile=fp_4det_boresight.pkl
+cp $fpfile $outdir
+fpfile="${outdir}/${fpfile}"
 # The executable script
 
 # Pico simulations needs to be executed with the https://github.com/zonca/toast/tree/pico_fits branch
