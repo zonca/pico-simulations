@@ -3,7 +3,7 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=100
+#SBATCH --nodes=90
 #SBATCH --time=00:12:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -67,7 +67,7 @@ groupnodes=0
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=1
+groupsize=2
 
 madam="pico_madam.par"
 
