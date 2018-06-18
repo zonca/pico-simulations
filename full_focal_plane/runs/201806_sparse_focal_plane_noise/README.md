@@ -28,13 +28,13 @@ zonca@sdsc.edu
 Available maps:
 
 * IQU maps binned and destriped with Madam
-* White noise covariance matrices `wcov.fits`
+* White noise covariance matrices `wcov.fits`, white noise levels were reduced in order to be representative of the total focalplane
 * Original hitmaps from Madam (less detectors, lower sampling rate) and corrected hitmaps representative of nominal focal plane
 
 NERSC
 
-`/global/cscratch1/sd/zonca/pico/full_focal_plane_noise`
+`/global/project/projectdirs/pico/noise/sparse_focalplane_1year`
 
 tape
 
-`~zonca/pico/201806_sparse_focal_plane_noise`
+`~zonca/pico/201806_sparse_focalplane_1year`
