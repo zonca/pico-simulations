@@ -1,0 +1,17 @@
+--spinperiod
+1.0
+--spinangle
+65.0
+--precperiod
+600.0
+--precangle
+30.0
+--hwprpm
+0.0
+--baseline
+10.0
+--nside
+512
+--obs
+24.0
+--flush
