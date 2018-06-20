@@ -18,6 +18,7 @@ zonca@sdsc.edu
 * hitmaps and noise covariance matrices corrected to be representative of the full focal plane and nominal sampling frequency
 * baseline 1/f and white noise
 * 1 year
+* output units of all products are `microKelvin_CMB`
 
 * see the [SLURM scripts and other configuration files](https://github.com/zonca/pico-simulations/tree/201806_sparse_focal_plane_noise/full_focal_plane)
 
