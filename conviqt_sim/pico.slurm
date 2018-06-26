@@ -85,7 +85,6 @@ com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
---debug \
 --madam \
 --madampar ${madam} \
 --fp ${fpfile} \
