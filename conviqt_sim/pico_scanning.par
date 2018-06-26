@@ -25,4 +25,4 @@
 --conviqt_input_alm
 input/pico_band_12_alm.fits
 --conviqt_beamfile_alm
-beam_DETECTOR_alm.fits
+input/4pi_beam_DETECTOR_center_150GHz_alm.fits
