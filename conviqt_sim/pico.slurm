@@ -3,7 +3,7 @@
 #SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -68,14 +68,12 @@ parfile="pico_scanning.par"
 
 nobs=1
 
-groupnodes=0
-
 # Data distribution parameters.  We are distributing by detector,
 # so if our number of processes in a group is larger than the number
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=1
+groupsize=2
 
 madam="pico_madam.par"
 
