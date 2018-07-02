@@ -24,7 +24,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201806_boresight_2pix_2years_nofg"
+outdir="out/201807_boresight_2pix_2years_nofg"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
