@@ -8,6 +8,9 @@
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
+### Cori specs
+#SBATCH --constraint=knl,quad,cache
+#SBATCH --core-spec=4
 
 set -o errexit
 set -v
@@ -38,7 +41,7 @@ nodes=$SLURM_JOB_NUM_NODES
 if [ $nodes -lt 5 ]; then
     node_proc=1
 else
-    node_proc=8
+    node_proc=16
 fi
 
 fpparfile="focalplane.par"
@@ -89,10 +92,10 @@ $@ \
 #--- Hardware configuration ----
 
 # Hyperthread CPUs per physical core
-cpu_per_core=2
+cpu_per_core=4
 
 # Physical cores we are using
-node_cores=24
+node_cores=64
 
 node_thread=$(( node_cores / node_proc ))
 node_depth=$(( cpu_per_core * node_thread ))
