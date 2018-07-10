@@ -79,10 +79,13 @@ madam="pico_madam.par"
 
 # The commandline
 
+# use galactic reference frame
+
 com="${ex} @${parfile} \
 --toast-output-dir "${outdir}" \
 --toast-timing-fname "timing_report_main" \
 --groupsize ${groupsize} \
+--coord G \
 --madam \
 --madampar ${madam} \
 --fp ${fpfile} \
