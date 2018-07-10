@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --partition=regular
+#SBATCH --partition=debug
 
 #SBATCH --account=mp107
-#SBATCH --nodes=400
-#SBATCH --time=01:00:00
+#SBATCH --nodes=2
+#SBATCH --time=00:30:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
@@ -27,7 +27,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201806_boresight_1pix_conviqt_realbeams_1year"
+outdir="out/201806_boresight_1pix_conviqt_realbeams_10h"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
