@@ -27,7 +27,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201807_boresight_2pix_2years_nofg"
+outdir="out/201807_boresight_2pix_2years_nofg_6hobs"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -61,7 +61,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=730
+nobs=$(( 730*4 ))
 
 groupnodes=0
 
@@ -70,7 +70,7 @@ groupnodes=0
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=4
+groupsize=1
 
 madam="pico_madam.par"
 
