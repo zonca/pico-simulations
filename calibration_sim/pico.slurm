@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --partition=debug
+#SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=120
-#SBATCH --time=00:30:00
+#SBATCH --nodes=100
+#SBATCH --time=00:40:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
