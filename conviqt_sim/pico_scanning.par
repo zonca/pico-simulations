@@ -15,7 +15,7 @@
 --nside
 512
 --obs
-10.0
+24.0
 --flush
 --run_conviqt
 --conviqt_lmax

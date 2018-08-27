@@ -66,7 +66,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=1
+nobs=365
 
 # Data distribution parameters.  We are distributing by detector,
 # so if our number of processes in a group is larger than the number
