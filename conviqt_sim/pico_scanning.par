@@ -19,9 +19,9 @@
 --flush
 --run_conviqt
 --conviqt_lmax
-128
+720
 --conviqt_beammax
-64
+90
 --conviqt_input_alm
 input/pico_band_12_alm.fits
 --conviqt_beamfile_alm
