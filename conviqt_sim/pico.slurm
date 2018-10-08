@@ -3,7 +3,7 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=9
+#SBATCH --nodes=108
 #SBATCH --time=01:00:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -27,7 +27,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201810_boresight_1pix_conviqt_realbeams_mask5deg_30d"
+outdir="out/201810_boresight_1pix_conviqt_realbeams_mask5deg_1y"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -66,7 +66,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=72
+nobs=876
 
 # Data distribution parameters.  We are distributing by detector,
 # so if our number of processes in a group is larger than the number
