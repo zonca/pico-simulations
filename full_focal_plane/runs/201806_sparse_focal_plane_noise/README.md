@@ -4,6 +4,7 @@ PICO Sparse focal plane simulation of noise
 June 2018
 zonca@sdsc.edu
 
+Published on wiki at https://zzz.physics.umn.edu/ipsig/20180629_full_focal_plane_noise_sims
 
 ## Software versions
 
