@@ -1,0 +1,14 @@
+--bandcenter_ghz
+154.80
+--bandwidth_ghz
+38.70
+--fwhm
+6.2
+--psd_NET
+0
+--psd_fknee
+0.0
+--psd_alpha
+1
+--psd_fmin
+1.0e-5
