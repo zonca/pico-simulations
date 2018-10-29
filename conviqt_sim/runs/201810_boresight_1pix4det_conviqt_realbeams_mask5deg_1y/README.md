@@ -15,7 +15,7 @@ TOAST and `pico-simulations`, both tagged: `201810_boresight_1pix4det_conviqt_re
 
 * 1 pixel in band 12 at 154.80 GHz
 * 4 detectors, 0,90,45,135 degrees
-* realistic beams with center masked
+* realistic beams with center masked `center_150GHz_mask400px5d_l720_alm`
 * boresight pointing
 * PySM input sky
 * 1 years
