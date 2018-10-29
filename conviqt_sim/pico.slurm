@@ -3,7 +3,7 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=108
+#SBATCH --nodes=216
 #SBATCH --time=01:00:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
@@ -27,7 +27,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201810_boresight_1pix_conviqt_realbeams_mask5deg_1y"
+outdir="out/201810_boresight_1pix4det_conviqt_realbeams_mask5deg_1y"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -46,12 +46,12 @@ fi
 
 # Generate the focalplane file if it does not already exist.
 
-detpix=1
+detpix=2
 
 fpparfile="focalplane.par"
 fpfile="${outdir}/fp_${detpix}.pkl"
 
-cp fp_fake_1.pkl $fpfile
+cp fp_fake_2.pkl $fpfile
 
 # The executable script
 
@@ -73,7 +73,7 @@ nobs=876
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=2
+groupsize=4
 
 madam="pico_madam.par"
 
