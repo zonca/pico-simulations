@@ -33,6 +33,8 @@ Available maps:
 * White noise covariance matrices `wcov.fits`, white noise levels were reduced in order to be representative of the total focalplane
 * Original hitmaps from Madam (less detectors, lower sampling rate) and corrected hitmaps representative of nominal focal plane
 
+Power spectra, by @keskitalo, available in the `cl` subfolder and [cls.tar.gz](cls.tar.gz)
+
 NERSC
 
 `/global/project/projectdirs/pico/noise/sparse_focalplane_1year`
