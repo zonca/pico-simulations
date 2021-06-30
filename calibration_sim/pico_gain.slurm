@@ -3,14 +3,11 @@
 #SBATCH --partition=regular
 
 #SBATCH --account=mp107
-#SBATCH --nodes=100
-#SBATCH --time=00:40:00
+#SBATCH --nodes=90
+#SBATCH --time=00:12:00
 #SBATCH --job-name=tiny-satellite
 #SBATCH --output=out_tiny_satellite_edison_%j.log
 #SBATCH --mail-type=ALL
-### Cori specs
-#SBATCH --constraint=knl,quad,cache
-#SBATCH --core-spec=4
 
 set -o errexit
 set -v
@@ -27,7 +24,7 @@ echo "PYTHON: $(which python)"
 echo "PYTHON VERSION: $(python --version &> /dev/stdout)"
 echo ""
 
-outdir="out/201807_boresight_2pix_2years_nofg_6hobs"
+outdir="out/201806_boresight_2pix_2years_nofg_calibrated"
 mkdir -p "${outdir}"
 
 # This script assumes that you are running at NERSC and have already
@@ -41,7 +38,7 @@ nodes=$SLURM_JOB_NUM_NODES
 if [ $nodes -lt 5 ]; then
     node_proc=1
 else
-    node_proc=16
+    node_proc=8
 fi
 
 fpparfile="focalplane.par"
@@ -49,6 +46,8 @@ fpfile=fp_4det_boresight.pkl
 cp $fpfile $outdir
 fpfile="${outdir}/${fpfile}"
 # The executable script
+
+gainfile="2pix_gains_renamed.fits"
 
 # Pico simulations needs to be executed with the https://github.com/zonca/toast/tree/pico_fits branch
 
@@ -61,7 +60,7 @@ parfile="pico_scanning.par"
 
 # Observations
 
-nobs=$(( 730*4 ))
+nobs=730
 
 groupnodes=0
 
@@ -70,7 +69,7 @@ groupnodes=0
 # of detectors this is bad.  In that case, set the group size to 
 # one, so we have many more groups, each assigned
 
-groupsize=1
+groupsize=2
 
 madam="pico_madam.par"
 
@@ -84,6 +83,7 @@ com="${ex} @${parfile} \
 --madam \
 --madampar ${madam} \
 --fp ${fpfile} \
+--gain ${gainfile} \
 --numobs ${nobs} \
 --outdir ${outdir}/out \
 $@ \
@@ -92,10 +92,10 @@ $@ \
 #--- Hardware configuration ----
 
 # Hyperthread CPUs per physical core
-cpu_per_core=4
+cpu_per_core=2
 
 # Physical cores we are using
-node_cores=64
+node_cores=24
 
 node_thread=$(( node_cores / node_proc ))
 node_depth=$(( cpu_per_core * node_thread ))
